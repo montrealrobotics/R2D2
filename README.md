@@ -42,6 +42,9 @@ If you are setting this up on the control workstation:
 
 ## Usage
 
+Your robot should be powered on, the joints unlocked and in Desk (Franka arm user interface) FCI mode should be activated.
+The oculus headset should be powered on and if it has not been configured for connection over the network, it should be connected by a USB cable. Typically your server machine will be the NUC and the client machine will be another machine that the cameras are connected to.
+
 ### Server Machine
 Activate the polymetis conda environment:
 
@@ -57,12 +60,25 @@ python scripts/server/run_server.py
 
 ### Client Machine
 After activating your conda environment, try collecting a trajectory:
+```bash
+conda activate robot
+```
 
 ```python
 python scripts/tests/collect_trajectory.py
 ```
 
-To collect data, run:
+Data collection and camera calibration are handled inside a GUI. On first use, and every time the cameras are moved, they should be calibrated, the GUI can be launched with the following command.
+
 ```python
 python scripts/main.py
 ```
+This command launches the oculus reader, the connection to the robot and the cameras. All references the keys 'A' and 'B' are the keys on the oculus controller.
+
+During calibration the robot will follow some predefined trajectories. 
+
+## Troubleshooting
+
+You may find that on launching the server, you receive an error that the gripper cannot be activated even though you can see the activation of the gripper complete and the light changes to blue. In this case, restart the server script.
+
+If on launching the GUI you get an error relating to camera IDs, unplug all cameras and reconnect them.
