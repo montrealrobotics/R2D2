@@ -1,0 +1,3 @@
+*.pyc
+.idea/*
+r2d2.egg-info/*

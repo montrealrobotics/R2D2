@@ -1,12 +1,12 @@
 # Robot Params #
-nuc_ip = '172.16.0.1'
-robot_ip = '172.16.0.8'
+nuc_ip = '172.16.0.3'
+robot_ip = '172.16.0.1'
 sudo_password = 'robot'
 
 # Camera ID's #
-hand_camera_id = '19824535'
-varied_camera_1_id = '23404442'
-varied_camera_2_id = '29838012'
+hand_camera_id = '11744905'
+varied_camera_1_id = '23960472'
+varied_camera_2_id = '20540549'
 
 # Charuco Board Params #
 from cv2 import aruco
