@@ -145,6 +145,7 @@ class VRPolicy:
 
         # Calculate Gripper Action #
         gripper_action = self.vr_state["gripper"] - robot_gripper
+        # print("controller position:", self.vr_state["gripper"], ", robot gripper position:", robot_gripper)
 
         # Calculate Desired Pose #
         target_pos = pos_action + robot_pos

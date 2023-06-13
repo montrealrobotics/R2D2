@@ -3,7 +3,8 @@ import random
 from r2d2.data_loading.trajectory_sampler import crawler
 from r2d2.trajectory_utils.misc import visualize_trajectory
 
-logdir = "/home/sasha/R2D2/data/success/2023-04-20"
+# logdir = "/home/sasha/R2D2/data/success/2023-04-20"
+logdir = "/home/r2d2/r2d2_ws/src/R2D2/data/success/2023-05-21"
 
 all_folderpaths = crawler(logdir)
 random.shuffle(all_folderpaths)

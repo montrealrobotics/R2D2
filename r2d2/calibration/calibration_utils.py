@@ -418,6 +418,7 @@ class ThirdPersonCameraCalibrator(CharucoDetector):
         # Split Into Train / Test #
         readings = self._readings_dict[cam_id]
         if len(readings) == 0:
+            print("Calibration failed, no output from process image.")
             return False
         poses = np.array(self._pose_dict[cam_id])
         ind = np.random.choice(len(readings), size=len(readings), replace=False)
@@ -431,6 +432,7 @@ class ThirdPersonCameraCalibrator(CharucoDetector):
         # Calculate Approximate Gripper2Base Transformations #
         results = self._calculate_gripper_to_base(train_readings, train_poses, eval_readings=test_readings)
         if results is None:
+            print("Calibration failed, no gripper to base transformations found.")
             return False
         approx_poses, successes = results
         test_poses = np.array(test_poses)[successes]
@@ -445,8 +447,9 @@ class ThirdPersonCameraCalibrator(CharucoDetector):
         rot_success = np.all(rot_error < self.rot_error_threshold)
 
         # print('Pose Std: ', poses.std(axis=0))
-        # print('Lin Error: ', lin_error)
-        # print('Rot Error: ', rot_error)
+        print("Variable camera calibration success: ", lin_success and rot_success)
+        print('Linear Error: ', max(lin_error/self.lin_error_threshold))
+        print('Rotational Error: ', max(rot_error/self.rot_error_threshold), "\n")
 
         return lin_success and rot_success
 
@@ -583,6 +586,7 @@ class HandCameraCalibrator(CharucoDetector):
         # Split Into Train / Test #
         readings = self._readings_dict[cam_id]
         if len(readings) == 0:
+            print("Calibration failed, no output from process image.")
             return False
         poses = np.array(self._pose_dict[cam_id])
         ind = np.random.choice(len(readings), size=len(readings), replace=False)
@@ -596,6 +600,7 @@ class HandCameraCalibrator(CharucoDetector):
         # Calculate Approximate Gripper2Base Transformations #
         results = self._calculate_gripper_to_base(train_readings, train_poses, eval_readings=test_readings)
         if results is None:
+            print("Calibration failed, no gripper to base transformations found.")
             return False
         approx_poses, successes = results
         test_poses = np.array(test_poses)[successes]
@@ -610,7 +615,8 @@ class HandCameraCalibrator(CharucoDetector):
         rot_success = np.all(rot_error < self.rot_error_threshold)
 
         # print('Pose Std: ', poses.std(axis=0))
-        # print('Lin Error: ', lin_error)
-        # print('Rot Error: ', rot_error)
+        print("Hand cam calibration success: ", lin_success and rot_success)
+        print('Linear Error: ', max(lin_error/self.lin_error_threshold))
+        print('Rotational Error: ', max(rot_error/self.rot_error_threshold), "\n")
 
         return lin_success and rot_success

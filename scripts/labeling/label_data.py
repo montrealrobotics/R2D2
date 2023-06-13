@@ -3,7 +3,7 @@ import os
 from collections import defaultdict
 
 from r2d2.camera_utils.wrappers.recorded_multi_camera_wrapper import RecordedMultiCameraWrapper
-from r2d2.training.data_loading.trajectory_sampler import collect_data_folderpaths
+from r2d2.data_loading.trajectory_sampler import collect_data_folderpaths
 from r2d2.trajectory_utils.misc import visualize_timestep
 from r2d2.trajectory_utils.trajectory_reader import TrajectoryReader
 
