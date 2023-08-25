@@ -90,7 +90,10 @@ class VRPolicy:
                 rot_mat = np.asarray(self._state["poses"][self.controller_id])
                 if stop_updating:
                     self.reset_orientation = False
-                self.vr_to_global_mat = np.linalg.inv(rot_mat)
+                try:
+                    self.vr_to_global_mat = np.linalg.inv(rot_mat)
+                except:
+                    print("Oculus pose matrix empty, definition of forward not completed!!!")
 
     def _process_reading(self):
         rot_mat = np.asarray(self._state["poses"][self.controller_id])
